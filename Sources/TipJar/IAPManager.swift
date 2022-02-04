@@ -15,9 +15,13 @@ public class IAPManager: ObservableObject {
     @Published var packages: [Purchases.Package] = []
     @Published var inPaymentProgress = false
 
-    public init() {
+    public init(){
+        print()
+    }
+    
+    public init(apiKey: String) {
         Purchases.logLevel = .debug     //debugLogsEnabled = true
-        Purchases.configure(withAPIKey: globalConstants.revenueCatAPIKey)
+        Purchases.configure(withAPIKey: apiKey)
         Purchases.shared.offerings { (offerings, error) in
             if let packages = offerings?.current?.availablePackages {
                 self.packages = packages

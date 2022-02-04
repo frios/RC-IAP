@@ -11,20 +11,34 @@ import SwiftUI
 public struct IAPView: View {
     @EnvironmentObject private var iapManager: IAPManager
     
-    public init(){}
+    private var title : String
+    private var message : String
+    private var imageName : String
+
+    public init(title: String = "Tip Jar", imageName: String = "", message: String = "Please support my development efforts") {
+        self.title = title
+        self.imageName = imageName
+        self.message = message
+    }
 
     public var body: some View {
         VStack {
-            Text("Tip Jar")
+            Text(title)
                 .font(.largeTitle)
                 .padding(.horizontal)
             
-            Image("Tip Jar")
-                .resizable()
-                .frame (width: 200, height: 200, alignment: .center)
+            if imageName == "" {
+                Image("Tip Jar", bundle: .module)
+                    .resizable()
+                    .frame (width: 200, height: 200, alignment: .center)
+            } else {
+                Image(imageName)
+                    .resizable()
+                    .frame (width: 200, height: 200, alignment: .center)
+            }
 
             VStack(alignment: .leading) {
-                Text("I am a lone developer who does this for the love of coding. If you love the app, please leave a tip to help with my development costs. Any tip at all helps a lot. Thank you.")
+                Text(message)
                     .multilineTextAlignment(.center)
             }
             .padding()
@@ -44,7 +58,7 @@ public struct IAPView: View {
 
 struct IAPView_Previews: PreviewProvider {
     static var previews: some View {
-        IAPView().environmentObject(IAPManager())
+        IAPView()
     }
 }
 
