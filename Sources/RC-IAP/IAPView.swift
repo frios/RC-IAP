@@ -12,10 +12,10 @@ public struct IAPView: View {
     @EnvironmentObject private var iapManager: IAPManager
     
     private var title : String
-    private var message : String
-    private var imageName : String
+    private var message : String?
+    private var imageName : String?
 
-    public init(title: String = "Tip Jar", imageName: String = "", message: String = "") {
+    public init(title: String = "In-App Purchases", imageName: String? = nil, message: String? = nil) {
         self.title = title
         self.imageName = imageName
         self.message = message
@@ -27,21 +27,19 @@ public struct IAPView: View {
                 .font(.largeTitle)
                 .padding(.horizontal)
             
-            if imageName == "" {
-                Image("Tip Jar", bundle: .module)
-                    .resizable()
-                    .frame (width: 200, height: 200, alignment: .center)
-            } else {
+            if let imageName = self.imageName {
                 Image(imageName)
                     .resizable()
                     .frame (width: 200, height: 200, alignment: .center)
             }
 
-            VStack(alignment: .leading) {
-                Text(message)
-                    .multilineTextAlignment(.center)
+            if let message = self.message {
+                VStack(alignment: .leading) {
+                    Text(message)
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
             }
-            .padding()
 
             List {
                 ForEach(iapManager.packages, id: \.identifier) { product in
