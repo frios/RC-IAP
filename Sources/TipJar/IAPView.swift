@@ -15,7 +15,7 @@ public struct IAPView: View {
     private var message : String
     private var imageName : String
 
-    public init(title: String = "Tip Jar", imageName: String = "", message: String = "Please support my development efforts") {
+    public init(title: String = "Tip Jar", imageName: String = "", message: String = "") {
         self.title = title
         self.imageName = imageName
         self.message = message
