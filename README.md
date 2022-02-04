@@ -3,7 +3,7 @@
 A RevenueCat based in-app purchase package.
 
 RC-IAP is a simple to implement RevenueCat based in-app purchase system. It takes care of displaying a purchase page with
-a Title, Image, and a message from the developer, the last two of which are optional.
+a Title, Image, and a message from the developer, all of which are optional (Title defaults to "In-App Purchases").
 
 Setup is easy following the steps outlined below.
 
@@ -20,7 +20,7 @@ struct ContentView: View {
     let iapManager = IAPManager(apiKey: revenueCatAPIKey)
 
     var body: some View {
-        IAPView()
+        IAPView() //or pass in title, imageName and/or message
             .environmentObject(iapManager)
     }
 }

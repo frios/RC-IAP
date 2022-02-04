@@ -1,12 +1,10 @@
 //
 //  IAPManager.swift
-//  LocationApp
+//
 //
 //  Created by Ferdinand Rios on 10/20/21.
 //
 
-
-import SwiftUI
 import Purchases
 
 public class IAPManager: ObservableObject {
@@ -15,9 +13,7 @@ public class IAPManager: ObservableObject {
     @Published var packages: [Purchases.Package] = []
     @Published var inPaymentProgress = false
 
-    public init(){
-        print()
-    }
+    public init(){}
     
     public init(apiKey: String) {
         Purchases.logLevel = .debug     //debugLogsEnabled = true
