@@ -31,11 +31,22 @@ public struct IAPView: View {
                 Image(imageName)
                     .resizable()
                     .frame (width: 200, height: 200, alignment: .center)
+            } else {
+                Image(systemName: "dollarsign.circle")
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame (width: 200, height: 200, alignment: .center)
             }
 
             if let message = self.message {
                 VStack(alignment: .leading) {
                     Text(message)
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+            } else {
+                VStack(alignment: .leading) {
+                    Text("Here are all of our in-app purchases.")
                         .multilineTextAlignment(.center)
                 }
                 .padding()
