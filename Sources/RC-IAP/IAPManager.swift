@@ -15,8 +15,8 @@ public class IAPManager: ObservableObject {
 
     public init(){}
     
-    public init(apiKey: String) {
-        Purchases.logLevel = .debug     //debugLogsEnabled = true
+    public init(apiKey: String, logLevel: Purchases.LogLevel) {
+        Purchases.logLevel = logLevel
         Purchases.configure(withAPIKey: apiKey)
         Purchases.shared.offerings { (offerings, error) in
             if let packages = offerings?.current?.availablePackages {
