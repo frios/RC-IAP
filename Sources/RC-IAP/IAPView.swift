@@ -33,14 +33,13 @@ public struct IAPView: View {
                 Image(imageName)
                     .resizable()
                     .renderingMode(self.renderingMode)
-                    .frame (width: 200, height: 200, alignment: .center)
+                    .frame (width: 150, height: 150, alignment: .center)
                     .foregroundColor(Color("AccentColor"))
-
             } else {
                 Image(systemName: "dollarsign.circle")
                     .renderingMode(.template)
                     .resizable()
-                    .frame (width: 200, height: 200, alignment: .center)
+                    .frame (width: 150, height: 150, alignment: .center)
             }
 
             if let message = self.message {
