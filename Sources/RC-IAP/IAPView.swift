@@ -15,7 +15,7 @@ public struct IAPView: View {
     private var message : String?
     private var imageName : String?
 
-    public init(title: String = "In-App Purchases", imageName: String? = "Tip Jar", message: String? = nil) {
+    public init(title: String = "In-App Purchases", imageName: String? = nil, message: String? = nil) {
         self.title = title
         self.imageName = imageName
         self.message = message
