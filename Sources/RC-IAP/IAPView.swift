@@ -14,10 +14,12 @@ public struct IAPView: View {
     private var title : String
     private var message : String?
     private var imageName : String?
+    private var renderingMode : Image.TemplateRenderingMode
 
-    public init(title: String = "In-App Purchases", imageName: String? = nil, message: String? = nil) {
+    public init(title: String = "In-App Purchases", imageName: String? = nil, renderingMode: Image.TemplateRenderingMode  = .original, message: String? = nil) {
         self.title = title
         self.imageName = imageName
+        self.renderingMode = renderingMode
         self.message = message
     }
 
@@ -30,7 +32,10 @@ public struct IAPView: View {
             if let imageName = self.imageName {
                 Image(imageName)
                     .resizable()
+                    .renderingMode(self.renderingMode)
                     .frame (width: 200, height: 200, alignment: .center)
+                    .foregroundColor(Color("AccentColor"))
+
             } else {
                 Image(systemName: "dollarsign.circle")
                     .renderingMode(.template)
