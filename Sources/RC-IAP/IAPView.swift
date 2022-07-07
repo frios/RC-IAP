@@ -92,7 +92,7 @@ public struct IAPRow: View {
             
             VStack(alignment: .leading) {
                 Text(product.product.localizedTitle).bold()
-                Text(product.product.localizedDescription)
+                Text(product.product.localizedDescription).multilineTextAlignment(.leading)
             }
 
             Spacer()
