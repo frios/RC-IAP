@@ -24,44 +24,46 @@ public struct IAPView: View {
     }
 
     public var body: some View {
-        VStack {
-            Text(title)
-                .font(.largeTitle)
-                .padding(.horizontal)
-            
-            if let imageName = self.imageName {
-                Image(imageName)
-                    .resizable()
-                    .renderingMode(self.renderingMode)
-                    .frame (width: 150, height: 150, alignment: .center)
-                    .foregroundColor(Color("AccentColor"))
-            } else {
-                Image(systemName: "dollarsign.circle")
-                    .renderingMode(.template)
-                    .resizable()
-                    .frame (width: 150, height: 150, alignment: .center)
-            }
-
-            if let message = self.message {
-                VStack(alignment: .leading) {
-                    Text(message)
-                        .multilineTextAlignment(.center)
+        ScrollView {
+            VStack {
+                Text(title)
+                    .font(.largeTitle)
+                    .padding(.horizontal)
+                
+                if let imageName = self.imageName {
+                    Image(imageName)
+                        .resizable()
+                        .renderingMode(self.renderingMode)
+                        .frame (width: 150, height: 150, alignment: .center)
+                        .foregroundColor(Color("AccentColor"))
+                } else {
+                    Image(systemName: "dollarsign.circle")
+                        .renderingMode(.template)
+                        .resizable()
+                        .frame (width: 150, height: 150, alignment: .center)
                 }
-                .padding()
-            } else {
-                VStack(alignment: .leading) {
-                    Text("Here are all of our in-app purchases.")
-                        .multilineTextAlignment(.center)
+                
+                if let message = self.message {
+                    VStack(alignment: .leading) {
+                        Text(message)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding()
+                } else {
+                    VStack(alignment: .leading) {
+                        Text("Here are all of our in-app purchases.")
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding()
                 }
-                .padding()
-            }
-
-            List {
-                ForEach(iapManager.packages, id: \.identifier) { product in
-                    Button(action: {
-                        iapManager.purchase(product: product)
-                    }) {
-                        IAPRow(product: product)
+                
+                List {
+                    ForEach(iapManager.packages, id: \.identifier) { product in
+                        Button(action: {
+                            iapManager.purchase(product: product)
+                        }) {
+                            IAPRow(product: product)
+                        }
                     }
                 }
             }
