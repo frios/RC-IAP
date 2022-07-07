@@ -65,6 +65,7 @@ public struct IAPView: View {
                             IAPRow(product: product)
                         }
                     }
+                    .padding()
 //                }
             }
         }
