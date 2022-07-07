@@ -57,16 +57,14 @@ public struct IAPView: View {
                     .padding()
                 }
                 
-//                List {
-                    ForEach(iapManager.packages, id: \.identifier) { product in
-                        Button(action: {
-                            iapManager.purchase(product: product)
-                        }) {
-                            IAPRow(product: product)
-                        }
+                ForEach(iapManager.packages, id: \.identifier) { product in
+                    Button(action: {
+                        iapManager.purchase(product: product)
+                    }) {
+                        IAPRow(product: product)
                     }
-                    .padding()
-//                }
+                }
+                .padding()
             }
         }
     }
