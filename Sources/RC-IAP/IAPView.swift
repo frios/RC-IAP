@@ -72,8 +72,11 @@ public struct IAPView: View {
 }
 
 struct IAPView_Previews: PreviewProvider {
+    static var iap = IAPManager()
+    
     static var previews: some View {
         IAPView()
+            .environmentObject(iap)
     }
 }
 
