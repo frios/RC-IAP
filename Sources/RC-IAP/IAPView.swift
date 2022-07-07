@@ -57,7 +57,7 @@ public struct IAPView: View {
                     .padding()
                 }
                 
-                List {
+//                List {
                     ForEach(iapManager.packages, id: \.identifier) { product in
                         Button(action: {
                             iapManager.purchase(product: product)
@@ -65,7 +65,7 @@ public struct IAPView: View {
                             IAPRow(product: product)
                         }
                     }
-                }
+//                }
             }
         }
     }
