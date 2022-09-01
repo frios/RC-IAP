@@ -16,8 +16,6 @@ public struct IAPView: View {
     private var imageName : String?
     private var renderingMode : Image.TemplateRenderingMode
     
-    @State private var retreivingData = false
-
     public init(title: String = "In-App Purchases", imageName: String? = nil, renderingMode: Image.TemplateRenderingMode  = .original, message: String? = nil) {
         self.title = title
         self.imageName = imageName
@@ -68,18 +66,9 @@ public struct IAPView: View {
                         }
                     }
                     .padding()
-                    
-                    if retreivingData {
-                        ProgressView ("Getting datab")
-                            .progressStyle()
-                    }
                 }
             }
         }
-        .onAppear(){
-            retreivingData = true
-        }
-        
     }
 }
 
