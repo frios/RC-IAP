@@ -15,6 +15,8 @@ public struct IAPView: View {
     private var message : String?
     private var imageName : String?
     private var renderingMode : Image.TemplateRenderingMode
+    
+    @State private var retreivingData = false
 
     public init(title: String = "In-App Purchases", imageName: String? = nil, renderingMode: Image.TemplateRenderingMode  = .original, message: String? = nil) {
         self.title = title
@@ -57,16 +59,27 @@ public struct IAPView: View {
                     .padding()
                 }
                 
-                ForEach(iapManager.packages, id: \.identifier) { product in
-                    Button(action: {
-                        iapManager.purchase(product: product)
-                    }) {
-                        IAPRow(product: product)
+                ZStack {
+                    ForEach(iapManager.packages, id: \.identifier) { product in
+                        Button(action: {
+                            iapManager.purchase(product: product)
+                        }) {
+                            IAPRow(product: product)
+                        }
+                    }
+                    .padding()
+                    
+                    if retreivingData {
+                        ProgressView ("Getting datab")
+                            .progressStyle()
                     }
                 }
-                .padding()
             }
         }
+        .onAppear(){
+            retreivingData = true
+        }
+        
     }
 }
 
