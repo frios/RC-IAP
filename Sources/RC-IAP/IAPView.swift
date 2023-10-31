@@ -5,11 +5,11 @@
 //  Created by Ferdinand Rios on 10/20/21.
 //
 
-import Purchases
+import RevenueCat
 import SwiftUI
 
 public struct IAPView: View {
-    @EnvironmentObject private var iapManager: IAPManager
+    @Environment (IAPManager.self) var iapManager: IAPManager
     
     private var title : String
     private var message : String?
@@ -75,12 +75,12 @@ struct IAPView_Previews: PreviewProvider {
     
     static var previews: some View {
         IAPView()
-            .environmentObject(iap)
+            .environment(iap)
     }
 }
 
 public struct IAPRow: View {
-    var product: Purchases.Package
+    var product: RevenueCat.Package
 
     public var body: some View {
         HStack (alignment: .top){
@@ -89,8 +89,8 @@ public struct IAPRow: View {
                 .foregroundColor(.accentColor)
             
             VStack(alignment: .leading) {
-                Text(product.product.localizedTitle).bold()
-                Text(product.product.localizedDescription).multilineTextAlignment(.leading)
+                Text(product.storeProduct.localizedTitle).bold()
+                Text(product.storeProduct.localizedDescription).multilineTextAlignment(.leading)
             }
 
             Spacer()
